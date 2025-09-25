@@ -3,9 +3,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { User, Copy, Share2, Trophy, Coins, Image, Filter } from "lucide-react";
+import { User, Copy, Share2, Trophy, Coins, Image, Filter, AlertTriangle } from "lucide-react";
 import { useState } from "react";
+import { useAccount } from "wagmi";
+import { ConnectButton } from "@/components/ConnectButton";
 
+// NOTE: This data remains static for now. In a real app, you would fetch this
+// based on the connected user's address.
 const playerStats = {
   totalSpins: 452,
   premiumSpins: 89,
@@ -36,6 +40,7 @@ const getRarityColor = (rarity: string) => {
 };
 
 const Profile = () => {
+  const { address, isConnected } = useAccount();
   const [selectedFilter, setSelectedFilter] = useState("All");
   const filters = ["All", "Common", "Rare", "Epic", "Legendary", "Mythic"];
 
@@ -47,6 +52,30 @@ const Profile = () => {
     navigator.clipboard.writeText(playerStats.referralCode);
   };
 
+  // Render a prompt to connect if the wallet is not connected
+  if (!isConnected) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <div className="container mx-auto px-6 py-8 text-center">
+            <Card className="max-w-md mx-auto p-8">
+                <CardHeader>
+                    <AlertTriangle className="w-12 h-12 text-warning mx-auto" />
+                    <CardTitle className="mt-4">Please Connect Your Wallet</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p className="text-muted-foreground mb-6">
+                        You need to connect your wallet to view your profile, stats, and NFT collection.
+                    </p>
+                    <ConnectButton />
+                </CardContent>
+            </Card>
+        </div>
+      </div>
+    );
+  }
+
+  // Render the full profile if connected
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -57,8 +86,8 @@ const Profile = () => {
             <User className="w-8 h-8 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold">Alex's Profile</h1>
-            <p className="text-muted-foreground">0x12...aB</p>
+            <h1 className="text-3xl font-bold">My Profile</h1>
+            <p className="text-muted-foreground font-mono text-sm">{address}</p>
           </div>
         </div>
 
