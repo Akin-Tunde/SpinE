@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Wallet, Trophy, User, Coins, ShoppingCart } from "lucide-react";
+import { Wallet, Trophy, User, Coins, ShoppingCart, Info  } from "lucide-react";
 
 const Navigation = () => {
   const location = useLocation();
@@ -60,6 +60,19 @@ const Navigation = () => {
             <User className="w-4 h-4" />
             <span>My Profile</span>
           </Link>
+
+<Link 
+           to="/about" 
+            className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
+              location.pathname === "/about" 
+                ? "bg-primary text-primary-foreground" 
+                : "text-muted-foreground hover:text-foreground hover:bg-muted"
+            }`}
+          >
+            <Info className="w-4 h-4" />
+            <span>About</span>
+          </Link>
+
         </div>
       </div>
 

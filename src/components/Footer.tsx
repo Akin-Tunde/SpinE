@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Trophy, ShoppingCart, User } from "lucide-react";
+import { Home, Trophy, ShoppingCart, User, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const footerNavItems = [
@@ -7,6 +7,7 @@ const footerNavItems = [
   { href: "/tournaments", label: "Tournaments", icon: Trophy },
   { href: "/marketplace", label: "Marketplace", icon: ShoppingCart },
   { href: "/profile", label: "Profile", icon: User },
+  { href: "/about", label: "About", icon: Info },
 ];
 
 const Footer = () => {

@@ -8,8 +8,8 @@ const Index = () => {
     <div className="min-h-screen bg-background pb-20 md:pb-0">
       <Navigation />
       
-      <div className="container mx-auto px-6 py-8">
-        <div className="space-y-8">
+      <div className="container mx-auto px-6 py-1">
+        <div className="space-y-1">
           {/* Main Spin Area */}
           <div>
             <SpinWheel />

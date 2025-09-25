@@ -57,14 +57,14 @@ const SpinWheel = () => {
         onClose={handleWinPopupClose} 
       />
       
-      <div className="flex flex-col items-center space-y-8">
+      <div className="flex flex-col items-center space-y-1">
       {/* Jackpot Display */}
-      <div className="text-center space-y-2">
-        <h2 className="text-2xl font-bold text-gold animate-shimmer bg-gradient-to-r from-gold via-warning to-gold bg-[length:200%_100%] bg-clip-text text-transparent">
-          THE LEGENDARY JACKPOT
+       <div className="flex items-baseline justify-center space-x-3">
+        <h2 className="text-3xl font-bold text-gold animate-shimmer bg-gradient-to-r from-gold via-warning to-gold bg-[length:200%_100%] bg-clip-text ">
+          JACKPOT:
         </h2>
-        <div className="text-6xl font-bold text-gold animate-bounce-gold">
-          1,530,480.25 SPIN
+        <div className="text-3xl font-bold text-gold animate-bounce-gold">
+          1,530,480.25
         </div>
       </div>
 
@@ -106,12 +106,11 @@ const SpinWheel = () => {
           disabled={isSpinning}
           onClick={() => handleSpin('premium')}
         >
-          {isSpinning ? "SPINNING..." : "PREMIUM SPIN (50 SPIN)"}
-        </Button>
+           {isSpinning ? "SPINNING..." : "SPIN (50 SPIN)"}        </Button>
       </div>
 
       {/* Tier Information */}
-      <Card className="w-full max-w-4xl p-6">
+      <Card className="w-full max-w-2xl ">
         <div className="grid grid-cols-5 gap-4">
           {['TIER 1', 'TIER 2', 'TIER 3', 'TIER 4', 'TIER 5'].map((tier, index) => (
             <div key={tier} className="text-center p-3 rounded-lg bg-muted/30 border border-border">
