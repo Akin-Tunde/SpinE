@@ -12,7 +12,7 @@ const Navigation = () => {
           SpinGame
         </div>
         
-        <div className="flex space-x-6">
+        <div className="hidden md:flex space-x-6">
           <Link 
             to="/" 
             className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${

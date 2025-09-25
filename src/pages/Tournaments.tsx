@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Trophy, Users, Clock, Coins } from "lucide-react";
+import Footer from "@/components/Footer";
 
 const tournaments = {
   live: [
@@ -156,6 +157,7 @@ const Tournaments = () => {
           </TabsContent>
         </Tabs>
       </div>
+       <Footer />
     </div>
   );
 };

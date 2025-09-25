@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Search, ShoppingCart, ArrowUpDown, Image } from "lucide-react";
 import { useState } from "react";
+import Footer from "@/components/Footer";
 
 const marketplaceNFTs = [
   { id: 1, name: "SpinGame NFT #123", rarity: "Rare", price: "500 SPIN", owner: "0x34...fG", image: "/placeholder.svg", forSale: true },
@@ -88,7 +89,7 @@ const Marketplace = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-20">
       <Navigation />
       
       <div className="container mx-auto px-6 py-8">
@@ -238,6 +239,7 @@ const Marketplace = () => {
           </div>
         </div>
       </div>
+       <Footer />
     </div>
   );
 };

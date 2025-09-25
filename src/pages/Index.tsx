@@ -1,10 +1,11 @@
 import Navigation from "@/components/Navigation";
 import SpinWheel from "@/components/SpinWheel";
 import RecentWins from "@/components/RecentWins";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-20 md:pb-0">
       <Navigation />
       
       <div className="container mx-auto px-6 py-8">
@@ -20,6 +21,7 @@ const Index = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

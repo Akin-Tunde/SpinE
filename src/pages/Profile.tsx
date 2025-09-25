@@ -7,6 +7,7 @@ import { User, Copy, Share2, Trophy, Coins, Image, Filter, AlertTriangle } from 
 import { useState } from "react";
 import { useAccount } from "wagmi";
 import { ConnectButton } from "@/components/ConnectButton";
+import Footer from "@/components/Footer";
 
 // NOTE: This data remains static for now. In a real app, you would fetch this
 // based on the connected user's address.
@@ -55,8 +56,7 @@ const Profile = () => {
   // Render a prompt to connect if the wallet is not connected
   if (!isConnected) {
     return (
-      <div className="min-h-screen bg-background">
-        <Navigation />
+   <div className="min-h-screen bg-background pb-20 md:pb-0">     <Navigation />
         <div className="container mx-auto px-6 py-8 text-center">
             <Card className="max-w-md mx-auto p-8">
                 <CardHeader>
@@ -71,6 +71,7 @@ const Profile = () => {
                 </CardContent>
             </Card>
         </div>
+          <Footer />
       </div>
     );
   }
@@ -210,6 +211,7 @@ const Profile = () => {
           </TabsContent>
         </Tabs>
       </div>
+        <Footer />
     </div>
   );
 };
