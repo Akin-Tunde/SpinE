@@ -1,0 +1,18 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjMyMDI2NCwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDFGMkE1MkYwZjlDZDYwZGY4RDAwNTdjNGE1YTEwRUFlNjQyNjNCNDgifQ",
+    "payload": "eyJkb21haW4iOiJzZWFybi5uZXRsaWZ5LmFwcCJ9",
+    "signature": "MHg3MmFhNGZjNTYzODA1Mzc4NjY5ZGU1NGY1M2NjMGY1ZmJkNjVmZjYwZGRiYTFmMTRjYzk4NDVkMGE1OTNiMDNkNTJlNWVmYTM1ZWU0YmU3ODU3NmQ1ZmUyNDEwYWI2M2VmMzE2MGE2NjMwNmM3ODc0NGNkZTAzNzdjNWVmMzI3ODFi"
+  },
+  "frame": {
+    "version": "1",
+    "name": "Launch",
+    "iconUrl": "https://searn.netlify.app/icon.png",
+    "homeUrl": "https://searn.netlify.app",
+    "imageUrl": "https://searn.netlify.app/image.png",
+    "buttonTitle": "Check this out",
+    "splashImageUrl": "https://searn.netlify.app/splash.png",
+    "splashBackgroundColor": "#eeccff",
+    "webhookUrl": "https://searn.netlify.app/api/webhook"
+  }
+}
