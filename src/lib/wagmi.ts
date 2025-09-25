@@ -28,7 +28,7 @@ export const config = createConfig({
         name: "Policast",
         description: "Decentralized Prediction Markets",
         url: typeof window !== 'undefined' ? window.location.origin : 'https://policast.app',
-        icons: ['https://policast.app/icons/logo.png'],
+        icons: [''],
       },
     }),
   ],
