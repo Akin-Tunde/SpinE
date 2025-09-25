@@ -1,9 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Wallet, Trophy, User, Coins, ShoppingCart, Info  } from "lucide-react";
+import { useAccount } from "wagmi";
+import { ConnectButton } from "@/components/ConnectButton";
+import { Trophy, User, Coins, ShoppingCart, Info } from "lucide-react";
 
 const Navigation = () => {
   const location = useLocation();
+  const { isConnected } = useAccount();
 
   return (
     <nav className="flex items-center justify-between p-6 border-b border-border bg-card/50">
@@ -60,9 +62,9 @@ const Navigation = () => {
             <User className="w-4 h-4" />
             <span>My Profile</span>
           </Link>
-
-<Link 
-           to="/about" 
+          
+          <Link 
+            to="/about" 
             className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
               location.pathname === "/about" 
                 ? "bg-primary text-primary-foreground" 
@@ -72,20 +74,21 @@ const Navigation = () => {
             <Info className="w-4 h-4" />
             <span>About</span>
           </Link>
-
         </div>
       </div>
 
       <div className="flex items-center space-x-4">
-        <div className="flex items-center space-x-2 bg-gold/10 px-4 py-2 rounded-lg border border-gold/20">
-          <Coins className="w-4 h-4 text-gold" />
-          <span className="font-medium text-gold">1,250 SPIN</span>
-        </div>
-        
-        <Button variant="outline" size="sm" className="flex items-center space-x-2">
-          <Wallet className="w-4 h-4" />
-          <span>0x12...aB</span>
-        </Button>
+        {isConnected ? (
+          <>
+            <div className="hidden sm:flex items-center space-x-2 bg-gold/10 px-4 py-2 rounded-lg border border-gold/20">
+              <Coins className="w-4 h-4 text-gold" />
+              <span className="font-medium text-gold">1,250 SPIN</span>
+            </div>
+            <ConnectButton />
+          </>
+        ) : (
+          <ConnectButton />
+        )}
       </div>
     </nav>
   );

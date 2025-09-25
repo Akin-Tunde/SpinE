@@ -16,6 +16,21 @@ const marketplaceNFTs = [
   { id: 6, name: "SpinGame NFT #890", rarity: "Mythic", price: "25,000 SPIN", owner: "0x89...gH", image: "/placeholder.svg", forSale: true },
   { id: 7, name: "SpinGame NFT #345", rarity: "Rare", price: "750 SPIN", owner: "0x9A...iJ", image: "/placeholder.svg", forSale: true },
   { id: 8, name: "SpinGame NFT #678", rarity: "Epic", price: "3,200 SPIN", owner: "0xAB...kL", image: "/placeholder.svg", forSale: true },
+  // Adding more for "Show More" functionality
+  { id: 9, name: "SpinGame NFT #111", rarity: "Common", price: "120 SPIN", owner: "0xBC...mN", image: "/placeholder.svg", forSale: true },
+  { id: 10, name: "SpinGame NFT #222", rarity: "Rare", price: "600 SPIN", owner: "0xCD...oP", image: "/placeholder.svg", forSale: true },
+  { id: 11, name: "SpinGame NFT #333", rarity: "Epic", price: "2800 SPIN", owner: "0xDE...qR", image: "/placeholder.svg", forSale: true },
+  { id: 12, name: "SpinGame NFT #444", rarity: "Legendary", price: "12000 SPIN", owner: "0xEF...sT", image: "/placeholder.svg", forSale: true },
+  { id: 13, name: "SpinGame NFT #555", rarity: "Common", price: "150 SPIN", owner: "0xFG...uV", image: "/placeholder.svg", forSale: true },
+  { id: 14, name: "SpinGame NFT #666", rarity: "Rare", price: "800 SPIN", owner: "0xGH...wX", image: "/placeholder.svg", forSale: true },
+  { id: 15, name: "SpinGame NFT #777", rarity: "Mythic", price: "30000 SPIN", owner: "0xHI...yZ", image: "/placeholder.svg", forSale: true },
+  { id: 16, name: "SpinGame NFT #888", rarity: "Common", price: "110 SPIN", owner: "0xIJ...aB", image: "/placeholder.svg", forSale: true },
+  { id: 17, name: "SpinGame NFT #999", rarity: "Rare", price: "650 SPIN", owner: "0xJK...cD", image: "/placeholder.svg", forSale: true },
+  { id: 18, name: "SpinGame NFT #101", rarity: "Epic", price: "3500 SPIN", owner: "0xKL...eF", image: "/placeholder.svg", forSale: true },
+  { id: 19, name: "SpinGame NFT #112", rarity: "Common", price: "130 SPIN", owner: "0xLM...gH", image: "/placeholder.svg", forSale: true },
+  { id: 20, name: "SpinGame NFT #113", rarity: "Rare", price: "720 SPIN", owner: "0xMN...iJ", image: "/placeholder.svg", forSale: true },
+  { id: 21, name: "SpinGame NFT #114", rarity: "Legendary", price: "15000 SPIN", owner: "0xNO...kL", image: "/placeholder.svg", forSale: true },
+
 ];
 
 const getRarityColor = (rarity: string) => {
@@ -34,6 +49,7 @@ const Marketplace = () => {
   const [sortBy, setSortBy] = useState("price-low");
   const [priceRange, setPriceRange] = useState({ min: "", max: "" });
   const [selectedRarities, setSelectedRarities] = useState<string[]>([]);
+  const [visibleCount, setVisibleCount] = useState(10); // Show 10 items initially
   
   const sortOptions = [
     { value: "price-low", label: "Price: Low to High" },
@@ -87,6 +103,10 @@ const Marketplace = () => {
         ? prev.filter(r => r !== rarity)
         : [...prev, rarity]
     );
+  };
+
+  const handleShowMore = () => {
+    setVisibleCount(prevCount => prevCount + 10); // Load 10 more
   };
 
   const Filters = () => (
@@ -208,7 +228,7 @@ const Marketplace = () => {
 
             {/* NFT Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {filteredMarketplaceNFTs.map((nft) => (
+              {filteredMarketplaceNFTs.slice(0, visibleCount).map((nft) => (
                 <Card key={nft.id} className="overflow-hidden hover:shadow-lg transition-all cursor-pointer group">
                   <div className="aspect-square bg-muted flex items-center justify-center relative">
                     <Image className="w-16 h-16 text-muted-foreground" />
@@ -235,6 +255,15 @@ const Marketplace = () => {
                 </Card>
               ))}
             </div>
+
+            {/* Show More Button */}
+            {visibleCount < filteredMarketplaceNFTs.length && (
+              <div className="mt-8 text-center">
+                <Button onClick={handleShowMore} variant="outline">
+                  Show More
+                </Button>
+              </div>
+            )}
 
             {filteredMarketplaceNFTs.length === 0 && (
               <div className="text-center py-12">
