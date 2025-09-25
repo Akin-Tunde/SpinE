@@ -9,27 +9,32 @@ import Marketplace from "./pages/Marketplace";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
+import { WagmiProvider } from "wagmi";
+import { config } from "@/lib/wagmi";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/tournaments" element={<Tournaments />} />
-          <Route path="/marketplace" element={<Marketplace />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/about" element={<About />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+  
+ <WagmiProvider config={config}>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/tournaments" element={<Tournaments />} />
+            <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/about" element={<About />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </WagmiProvider>
+ );
 
 export default App;
