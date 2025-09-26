@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import spinWheelImage from "@/assets/spin-wheel.jpg";
 import WinPopup from "./WinPopup";
 
@@ -13,18 +12,11 @@ const SpinWheel = () => {
   const generateRandomWin = () => {
     const random = Math.random();
     
-    // Different probabilities for each tier
-    if (random < 0.45) {
-      return { tier: 1, prize: `${Math.floor(Math.random() * 50) + 10} SPIN` };
-    } else if (random < 0.75) {
-      return { tier: 2, prize: `${Math.floor(Math.random() * 100) + 50} SPIN` };
-    } else if (random < 0.90) {
-      return { tier: 3, prize: `${Math.floor(Math.random() * 250) + 100} SPIN` };
-    } else if (random < 0.98) {
-      return { tier: 4, prize: `${Math.floor(Math.random() * 500) + 250} SPIN` };
-    } else {
-      return { tier: 5, prize: `${Math.floor(Math.random() * 5000) + 1000} SPIN + NFT!` };
-    }
+    if (random < 0.45) return { tier: 1, prize: `${Math.floor(Math.random() * 50) + 10} SPIN` };
+    if (random < 0.75) return { tier: 2, prize: `${Math.floor(Math.random() * 100) + 50} SPIN` };
+    if (random < 0.90) return { tier: 3, prize: `${Math.floor(Math.random() * 250) + 100} SPIN` };
+    if (random < 0.98) return { tier: 4, prize: `${Math.floor(Math.random() * 500) + 250} SPIN` };
+    return { tier: 5, prize: `${Math.floor(Math.random() * 5000) + 1000} SPIN + NFT!` };
   };
 
   const handleSpin = (type: 'free' | 'premium') => {
@@ -33,11 +25,8 @@ const SpinWheel = () => {
       setFreeSpinsLeft(prev => prev - 1);
     }
     
-    // Simulate spin duration
     setTimeout(() => {
       setIsSpinning(false);
-      
-      // Generate random win after spin completes
       const win = generateRandomWin();
       setWinTier(win.tier);
       setWinPrize(win.prize);
@@ -57,10 +46,8 @@ const SpinWheel = () => {
         onClose={handleWinPopupClose} 
       />
       
-      {/* Added padding for mobile view */}
       <div className="flex flex-col items-center space-y-4 p-4">
       
-      {/* Jackpot Display - Made text responsive */}
        <div className="flex items-baseline justify-center space-x-2 md:space-x-3 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-gold animate-shimmer bg-gradient-to-r from-gold via-warning to-gold bg-[length:200%_100%] bg-clip-text ">
           JACKPOT:
@@ -70,7 +57,6 @@ const SpinWheel = () => {
         </div>
       </div>
 
-      {/* Spin Wheel - Made size responsive */}
       <div className="relative">
         <div className={`w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden animate-glow ${isSpinning ? 'animate-spin-slow' : ''}`}>
           <img 
@@ -84,33 +70,39 @@ const SpinWheel = () => {
         </div>
       </div>
 
-      {/* Action Buttons - Stacked on mobile, row on desktop */}
-      <div className="flex flex-col md:flex-row items-center w-full max-w-xs md:max-w-none md:w-auto space-y-4 md:space-y-0 md:space-x-6">
-        <div className="text-center space-y-2 w-full md:w-auto">
+      {/* --- ACTION BUTTONS SECTION MODIFIED --- */}
+      {/* Changed flex-col to flex, justify-center, items-start and space-y to space-x */}
+      <div className="flex items-start justify-center w-full space-x-4 md:space-x-6">
+        
+        {/* Container for the free spin button and its text */}
+        <div className="text-center space-y-2">
           <Button 
             variant="outline"
             size="lg"
-            className="w-full md:w-48 h-12 bg-success/10 border-success text-success hover:bg-success hover:text-success-foreground disabled:opacity-50"
+            // Changed width from w-full to w-40 md:w-48
+            className="w-40 md:w-48 h-12 bg-success/10 border-success text-success hover:bg-success hover:text-success-foreground disabled:opacity-50"
             disabled={freeSpinsLeft === 0 || isSpinning}
             onClick={() => handleSpin('free')}
           >
-            {isSpinning ? "SPINNING..." : `SPIN FOR FREE (${freeSpinsLeft} left)`}
+            {isSpinning ? "SPINNING..." : `FREE SPIN (${freeSpinsLeft})`}
           </Button>
           {freeSpinsLeft === 0 && (
-            <p className="text-sm text-muted-foreground">Next free in: 4h 12m</p>
+            <p className="text-sm text-muted-foreground">Next in: 4h 12m</p>
           )}
         </div>
 
         <Button 
           variant="default"
           size="lg"
-          className="w-full md:w-48 h-12 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-bold shadow-lg"
+           // Changed width from w-full to w-40 md:w-48
+          className="w-40 md:w-48 h-12 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-bold shadow-lg"
           disabled={isSpinning}
           onClick={() => handleSpin('premium')}
         >
-           {isSpinning ? "SPINNING..." : "SPIN (50 SPIN)"}
+           {isSpinning ? "SPINNING..." : "SPIN (50)"}
         </Button>
       </div>
+      {/* --- END OF MODIFIED SECTION --- */}
     </div>
     </>
   );
