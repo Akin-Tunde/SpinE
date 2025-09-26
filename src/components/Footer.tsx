@@ -4,7 +4,8 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button"; // Assuming you have a button component
 
 const footerNavItems = [
-  { href: "/", label: "Home", icon: Home },
+ 
+   { href: "/tournaments", label: "Tournaments", icon: Trophy },
   { href: "/marketplace", label: "Market", icon: ShoppingCart },
   // Central item is handled separately
   { href: "/profile", label: "Profile", icon: User },
@@ -45,8 +46,8 @@ const Footer = () => {
             asChild
             className="rounded-full w-16 h-16 bg-primary shadow-lg flex flex-col items-center justify-center"
           >
-            <Link to="/tournaments">
-                <Trophy className="w-7 h-7 text-primary-foreground" />
+            <Link to="/">
+                <Home className="w-7 h-7 text-primary-foreground" />
                 <span className="text-xs text-primary-foreground mt-1">Play</span>
             </Link>
           </Button>
