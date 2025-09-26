@@ -11,13 +11,13 @@ const About = () => {
       <div className="container mx-auto px-4 md:px-6 py-8">
         <div className="text-center mb-8 md:mb-12">
           <HelpCircle className="w-12 h-12 mx-auto text-primary mb-4" />
-          <h1 className="text-3xl md:text-4xl font-bold">How SpinGame Works</h1>
+          <h1 className="text-3xl md:text-4xl font-bold">How It Works</h1>
           <p className="text-muted-foreground mt-2 max-w-md mx-auto">
-            Win tokens, collect NFTs, and compete for massive prizes.
+            Your guide to winning tokens, NFTs, and more.
           </p>
         </div>
 
-        {/* "How it Works" section remains the same */}
+        {/* "How it Works" section with reduced text */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           <Card>
             <CardHeader>
@@ -28,7 +28,7 @@ const About = () => {
             </CardHeader>
             <CardContent className="text-muted-foreground">
               <p>
-                Use free daily spins or purchase premium spins to win <span className="font-semibold text-gold">SPIN tokens</span>. Higher tiers offer bigger rewards!
+                Use daily free spins or premium spins to win <span className="font-semibold text-gold">SPIN tokens</span>. Higher tiers mean bigger rewards.
               </p>
             </CardContent>
           </Card>
@@ -37,12 +37,12 @@ const About = () => {
             <CardHeader>
               <CardTitle className="flex items-center space-x-3">
                 <Image className="w-6 h-6 text-secondary" />
-                <span>2. Collect Rare NFTs</span>
+                <span>2. Collect NFTs</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="text-muted-foreground">
               <p>
-                Win exclusive <span className="font-semibold text-secondary">SpinGame NFTs</span> of varying rarities by landing on the wheel's highest tiers.
+                Land on high tiers to win exclusive <span className="font-semibold text-secondary">SpinGame NFTs</span> of varying rarities.
               </p>
             </CardContent>
           </Card>
@@ -51,23 +51,22 @@ const About = () => {
             <CardHeader>
               <CardTitle className="flex items-center space-x-3">
                 <Trophy className="w-6 h-6 text-primary" />
-                <span>3. Compete in Tournaments</span>
+                <span>3. Join Tournaments</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="text-muted-foreground">
               <p>
-                Compete in tournaments against other players for a chance to win massive prize pools of <span className="font-semibold text-primary">tokens and NFTs</span>.
+                Join tournaments to compete for massive prize pools of <span className="font-semibold text-primary">tokens and NFTs</span>.
               </p>
             </CardContent>
           </Card>
         </div>
 
-        {/* --- NEW SECTION ADDED HERE --- */}
+        {/* Reward Tiers section with reduced text */}
         <div className="mt-12 md:mt-16 text-center">
             <h2 className="text-2xl font-bold">Reward Tiers</h2>
-            <p className="text-muted-foreground mt-2 mb-6">The higher the tier, the better the prize.</p>
+            <p className="text-muted-foreground mt-2 mb-6">Higher tiers yield better prizes.</p>
             
-            {/* Tier Information Card */}
             <Card className="w-full max-w-2xl mx-auto p-2">
                 <div className="grid grid-cols-3 md:grid-cols-5 gap-2 md:gap-4">
                 {[
@@ -88,11 +87,11 @@ const About = () => {
                 </div>
             </Card>
         </div>
-        {/* --- END OF NEW SECTION --- */}
 
+        {/* Final CTA with reduced text */}
         <div className="mt-12 md:mt-16 text-center">
             <h2 className="text-2xl font-bold">Ready to Play?</h2>
-            <p className="text-muted-foreground mt-2">Connect your wallet and start spinning!</p>
+            <p className="text-muted-foreground mt-2">Connect your wallet to start winning!</p>
         </div>
       </div>
       
