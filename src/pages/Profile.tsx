@@ -142,10 +142,10 @@ const Profile = () => {
                     <span className="text-sm text-muted-foreground">Your code:</span>
                     <code className="bg-muted px-2 py-1 rounded text-sm font-mono">{playerStats.referralCode}</code>
                     <div className="flex gap-2">
-                        <Button size="icon-sm" variant="outline" onClick={copyReferralCode}>
+                        <Button size="sm" variant="outline" onClick={copyReferralCode}>
                             <Copy className="w-3 h-3" />
                         </Button>
-                        <Button size="icon-sm" variant="outline">
+                        <Button size="sm" variant="outline">
                             <Share2 className="w-3 h-3" />
                         </Button>
                     </div>
