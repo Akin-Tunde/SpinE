@@ -5,11 +5,22 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
+    // This padding for the footer is already perfectly implemented.
     <div className="min-h-screen bg-background pb-20 md:pb-0">
       <Navigation />
       
-      <div className="container mx-auto px-6 py-1">
-        <div className="space-y-1">
+      {/* 
+        KEY CHANGES:
+        - Adjusted horizontal padding (px) to be slightly tighter on mobile.
+        - Increased vertical padding (py) for better overall breathing room.
+      */}
+      <div className="container mx-auto px-4 md:px-6 py-4 md:py-8">
+        {/* 
+          KEY CHANGE:
+          - Increased the vertical spacing between SpinWheel and RecentWins 
+            for better visual separation.
+        */}
+        <div className="space-y-8 md:space-y-12">
           {/* Main Spin Area */}
           <div>
             <SpinWheel />
@@ -21,6 +32,7 @@ const Index = () => {
           </div>
         </div>
       </div>
+      
       <Footer />
     </div>
   );
