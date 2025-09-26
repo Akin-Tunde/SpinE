@@ -4,7 +4,7 @@ import { useAccount } from "wagmi";
 import { ConnectButton } from "@/components/ConnectButton";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Trophy, User, Coins, ShoppingCart, Info, Menu } from "lucide-react";
+import { Trophy, User, Coins, ShoppingCart, Info, Menu, BarChart } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Define nav links in an array to avoid repetition
@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/", label: "Spin", icon: Coins },
   { href: "/tournaments", label: "Tournaments", icon: Trophy },
   { href: "/marketplace", label: "Marketplace", icon: ShoppingCart },
+  { href: "/leaderboard", label: "Leaderboard", icon: BarChart },
   { href: "/profile", label: "My Profile", icon: User },
   { href: "/about", label: "About", icon: Info },
 ];
@@ -34,7 +35,7 @@ const Navigation = () => {
         location.pathname === href
           ? "text-primary font-semibold"
           : "text-muted-foreground hover:text-foreground",
-        className
+        className,
       )}
     >
       <Icon className="w-4 h-4" />
@@ -48,7 +49,7 @@ const Navigation = () => {
         <Link to="/" className="text-2xl font-bold text-primary">
           SpinGame
         </Link>
-        
+
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
@@ -77,23 +78,25 @@ const Navigation = () => {
           <SheetContent side="right" className="w-[300px]">
             <div className="flex flex-col h-full">
               <div className="p-4 border-b">
-                 <Link to="/" className="text-2xl font-bold text-primary">SpinGame</Link>
+                <Link to="/" className="text-2xl font-bold text-primary">
+                  SpinGame
+                </Link>
               </div>
               <div className="flex flex-col space-y-4 p-4">
                 {navLinks.map((link) => (
-                   <SheetClose asChild key={link.href}>
-                     <NavLink {...link} className="text-lg p-2 rounded-md" />
-                   </SheetClose>
+                  <SheetClose asChild key={link.href}>
+                    <NavLink {...link} className="text-lg p-2 rounded-md" />
+                  </SheetClose>
                 ))}
               </div>
-               {isConnected && (
+              {isConnected && (
                 <div className="mt-auto p-4 border-t">
-                    <div className="flex items-center space-x-2 bg-gold/10 px-3 py-2 rounded-lg border border-gold/20">
-                        <Coins className="w-5 h-5 text-gold" />
-                        <span className="font-bold text-gold text-base">1,250 SPIN</span>
-                    </div>
+                  <div className="flex items-center space-x-2 bg-gold/10 px-3 py-2 rounded-lg border border-gold/20">
+                    <Coins className="w-5 h-5 text-gold" />
+                    <span className="font-bold text-gold text-base">1,250 SPIN</span>
+                  </div>
                 </div>
-               )}
+              )}
             </div>
           </SheetContent>
         </Sheet>

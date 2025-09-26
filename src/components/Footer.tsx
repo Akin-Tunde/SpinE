@@ -1,15 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Trophy, ShoppingCart, User, Info } from "lucide-react"; // Removed Info for this example
+import { Home, Trophy, ShoppingCart, User, BarChart } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button"; // Assuming you have a button component
+import { Button } from "@/components/ui/button";
 
 const footerNavItems = [
- 
-   { href: "/tournaments", label: "Tournaments", icon: Trophy },
+  { href: "/tournaments", label: "Tournaments", icon: Trophy },
   { href: "/marketplace", label: "Market", icon: ShoppingCart },
   // Central item is handled separately
+  { href: "/leaderboard", label: "Ranks", icon: BarChart },
   { href: "/profile", label: "Profile", icon: User },
-  { href: "/about", label: "About", icon: Info },
 ];
 
 const Footer = () => {
@@ -24,13 +23,13 @@ const Footer = () => {
           return (
             // Added a placeholder div to create space for the center button
             <>
-              {index === 2 && <div className="w-16 h-16" />} 
+              {index === 2 && <div className="w-16 h-16" />}
               <Link
                 key={item.label}
                 to={item.href}
                 className={cn(
                   "flex flex-col items-center justify-center space-y-1 w-full h-full transition-colors",
-                  isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                  isActive ? "text-primary" : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 <item.icon className="w-6 h-6" />
@@ -39,16 +38,16 @@ const Footer = () => {
             </>
           );
         })}
-        
+
         {/* Central Floating Button */}
         <div className="absolute left-1/2 -translate-x-1/2 -top-6">
-           <Button
+          <Button
             asChild
             className="rounded-full w-16 h-16 bg-primary shadow-lg flex flex-col items-center justify-center"
           >
             <Link to="/">
-                <Home className="w-7 h-7 text-primary-foreground" />
-                <span className="text-xs text-primary-foreground mt-1">Play</span>
+              <Home className="w-7 h-7 text-primary-foreground" />
+              <span className="text-xs text-primary-foreground mt-1">Play</span>
             </Link>
           </Button>
         </div>

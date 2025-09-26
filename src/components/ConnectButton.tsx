@@ -9,6 +9,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { useAppKitAccount } from "@reown/appkit/react";
+
 
 // Helper component to render wallet icons (you would typically place this in a separate file)
 // In a real project, you might use SVG imports or a library for these icons.
