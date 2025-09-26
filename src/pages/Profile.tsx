@@ -121,7 +121,7 @@ const Profile = () => {
                     <span>Player Stats</span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4 text-sm">
+                <CardContent className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Total Spins:</span>
                     <span className="font-medium">{playerStats.totalSpins}</span>
@@ -144,7 +144,7 @@ const Profile = () => {
                     <span>Referral Link</span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4 text-sm">
+                <CardContent className="space-y-2 text-sm">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-muted-foreground">Your code:</span>
                     <code className="bg-muted px-2 py-1 rounded font-mono">{playerStats.referralCode}</code>
