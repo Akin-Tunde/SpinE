@@ -52,7 +52,6 @@ const Profile = () => {
     navigator.clipboard.writeText(playerStats.referralCode);
   };
 
-  // Render a prompt to connect if the wallet is not connected
   if (!isConnected) {
     return (
       <div className="min-h-screen bg-background flex flex-col pb-20 md:pb-0">
@@ -65,7 +64,7 @@ const Profile = () => {
                 </CardHeader>
                 <CardContent>
                     <p className="text-muted-foreground mb-6">
-                        You need to connect your wallet to view your profile, stats, and NFT collection.
+                        You need to connect to view your profile and collection.
                     </p>
                     <ConnectButton />
                 </CardContent>
@@ -76,36 +75,36 @@ const Profile = () => {
     );
   }
 
-  // Render the full profile if connected
   return (
-    // Added bottom padding for mobile footer
     <div className="min-h-screen bg-background pb-20 md:pb-0">
       <Navigation />
       
       <div className="container mx-auto px-4 md:px-6 py-8">
-        {/* Responsive Header: Stacks on mobile */}
-        <div className="flex flex-col md:flex-row md:items-center gap-4 mb-8">
-          <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center flex-shrink-0">
-            <User className="w-8 h-8 text-white" />
+        {/* --- MODIFIED HEADER SECTION --- */}
+        <div className="flex flex-row items-center gap-4 mb-8">
+          {/* Reduced avatar size */}
+          <div className="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center flex-shrink-0">
+            <User className="w-7 h-7 text-white" />
           </div>
           <div className="min-w-0">
-            <h1 className="text-2xl md:text-3xl font-bold">My Profile</h1>
-            {/* Break-all ensures long address doesn't overflow */}
-            <p className="text-muted-foreground font-mono text-sm break-all">{address}</p>
+            {/* Reduced title size */}
+            <h1 className="text-xl md:text-2xl font-bold">My Profile</h1>
+            {/* Updated address format to first 5, last 4 */}
+            <p className="text-muted-foreground font-mono text-sm break-all">
+              {address ? `${address.slice(0, 5)}...${address.slice(-4)}` : '...'}
+            </p>
           </div>
         </div>
+        {/* --- END OF MODIFIED SECTION --- */}
 
         <Tabs defaultValue="overview" className="w-full">
-          {/* Responsive Tabs: Full-width on mobile */}
           <TabsList className="grid grid-cols-2 w-full md:w-[400px] mx-auto">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="collection">NFT Collection</TabsTrigger>
           </TabsList>
           
           <TabsContent value="overview" className="mt-6">
-            {/* This grid is already responsive, stacking to 1 column by default */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Player Stats */}
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
@@ -129,7 +128,6 @@ const Profile = () => {
                 </CardContent>
               </Card>
 
-              {/* Referral */}
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
@@ -166,15 +164,13 @@ const Profile = () => {
           <TabsContent value="collection" className="mt-6">
             <Card>
               <CardHeader>
-                {/* Responsive Filter Section: Stacks on mobile */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                   <CardTitle className="flex items-center space-x-2">
                     <Image className="w-5 h-5 text-secondary" />
-                    <span>MY NFT COLLECTION</span>
+                    <span>My Collection</span>
                   </CardTitle>
                   <div className="flex items-center gap-2">
                     <Filter className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                    {/* flex-wrap allows filters to wrap to the next line */}
                     <div className="flex flex-wrap gap-2">
                       {filters.map((filter) => (
                         <Button
@@ -192,7 +188,6 @@ const Profile = () => {
                 </div>
               </CardHeader>
               <CardContent>
-                {/* This NFT grid is already perfectly responsive */}
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {filteredNFTs.map((nft) => (
                     <Card key={nft.id} className="overflow-hidden group hover:shadow-lg transition-shadow cursor-pointer">
