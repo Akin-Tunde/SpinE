@@ -111,27 +111,6 @@ const SpinWheel = () => {
            {isSpinning ? "SPINNING..." : "SPIN (50 SPIN)"}
         </Button>
       </div>
-
-      {/* Tier Information - Responsive grid */}
-      <Card className="w-full max-w-md md:max-w-2xl p-2">
-        <div className="grid grid-cols-3 md:grid-cols-5 gap-2 md:gap-4">
-          {[
-              { name: 'TIER 1', label: "Common" },
-              { name: 'TIER 2', label: "Rare" },
-              { name: 'TIER 3', label: "Epic" },
-              { name: 'TIER 4', label: "Legendary" },
-              { name: 'TIER 5', label: "Mythic" }
-          ].map((tier, index) => (
-            <div key={tier.name} className="text-center p-2 rounded-lg bg-muted/30 border border-border">
-              <div className="font-semibold text-xs md:text-sm text-muted-foreground">{tier.name}</div>
-              <div className="text-xs text-muted-foreground mt-1">
-                {tier.label}
-                {index === 4 && " + Jackpot"}
-              </div>
-            </div>
-          ))}
-        </div>
-      </Card>
     </div>
     </>
   );
