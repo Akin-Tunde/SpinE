@@ -5,19 +5,23 @@ import { Coins, Image, Trophy, HelpCircle } from "lucide-react";
 
 const About = () => {
   return (
+    // pb-20 md:pb-0 is the key for accommodating the mobile footer. Great job!
     <div className="min-h-screen bg-background pb-20 md:pb-0">
       <Navigation />
       
-      <div className="container mx-auto px-6 ">
-        <div className="text-center mb-10">
+      {/* Adjusted padding and margins for better mobile spacing */}
+      <div className="container mx-auto px-4 md:px-6 py-8">
+        <div className="text-center mb-8 md:mb-12">
           <HelpCircle className="w-12 h-12 mx-auto text-primary mb-4" />
-          <h1 className="text-4xl font-bold">How SpinGame Works</h1>
-          <p className="text-muted-foreground mt-2">
-            Win tokens, collect NFTs, and compete.
+          {/* Made the heading size responsive */}
+          <h1 className="text-3xl md:text-4xl font-bold">How SpinGame Works</h1>
+          <p className="text-muted-foreground mt-2 max-w-md mx-auto">
+            Win tokens, collect NFTs, and compete for massive prizes.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* This grid is already perfectly responsive */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Card 1: Spin to Win */}
           <Card>
             <CardHeader>
@@ -64,11 +68,12 @@ const About = () => {
           </Card>
         </div>
 
-        <div className="mt-12 text-center">
-            <h2 className="text-2xl font-bold">Ready?</h2>
+        <div className="mt-10 md:mt-16 text-center">
+            <h2 className="text-2xl font-bold">Ready to Play?</h2>
             <p className="text-muted-foreground mt-2">Connect your wallet and start spinning!</p>
         </div>
       </div>
+      
       <Footer />
     </div>
   );
