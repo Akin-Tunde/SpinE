@@ -12,7 +12,7 @@ import { mainnet, sepolia, base, baseSepolia } from "@reown/appkit/networks";
 export const queryClient = new QueryClient();
 
 // 1. Get projectId from your .env.local file
-const projectId = import.meta.env.VITE_REOWN_PROJECT_ID;
+const projectId = import.meta.env.VITE_WALLETCONNECT_PROJECT_ID;
 
 if (!projectId) {
   throw new Error("VITE_REOWN_PROJECT_ID is not set in .env.local");
