@@ -1,32 +1,32 @@
+// src/main.tsx
+
+import { StrictMode } from 'react';
 import { createRoot } from "react-dom/client";
 import { WagmiProvider } from "wagmi";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { config } from "@/lib/wagmi";
-import { StrictMode, useEffect } from 'react';
+import { QueryClientProvider } from "@tanstack/react-query";
+
+// <-- Import from our new AppKit config, not the old wagmi config
+import { wagmiAdapter, queryClient } from "@/lib/appkit";
+
 import App from "./App.tsx";
 import "./index.css";
 
-import { sdk as miniAppSdk } from '@farcaster/miniapp-sdk'; // Import the Mini App SDK
+// Your FarcasterProvider can remain if you are using it
+import { sdk as miniAppSdk } from '@farcaster/miniapp-sdk';
+import { useEffect } from 'react';
 
 function FarcasterProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    const init = async () => {
-      // Signal readiness to both Frame and Mini App environments
-      
-      miniAppSdk.actions.ready();
-    };
-
-    init();
+    miniAppSdk.actions.ready();
   }, []);
 
   return <>{children}</>;
 }
 
-const queryClient = new QueryClient();
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <WagmiProvider config={config}>
+    {/* Use the config and client exported from appkit.ts */}
+    <WagmiProvider config={wagmiAdapter.wagmiConfig}>
       <QueryClientProvider client={queryClient}>
         <FarcasterProvider>
           <App />

@@ -1,3 +1,6 @@
+// src/components/Footer.tsx
+
+import React from "react"; // <-- Added import for React.Fragment
 import { Link, useLocation } from "react-router-dom";
 import { Home, Trophy, ShoppingCart, User, BarChart } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -21,11 +24,10 @@ const Footer = () => {
         {footerNavItems.map((item, index) => {
           const isActive = location.pathname === item.href;
           return (
-            // Added a placeholder div to create space for the center button
-            <>
+            // The key is now on the parent React.Fragment
+            <React.Fragment key={item.label}>
               {index === 2 && <div className="w-16 h-16" />}
               <Link
-                key={item.label}
                 to={item.href}
                 className={cn(
                   "flex flex-col items-center justify-center space-y-1 w-full h-full transition-colors",
@@ -35,7 +37,7 @@ const Footer = () => {
                 <item.icon className="w-6 h-6" />
                 <span className="text-xs">{item.label}</span>
               </Link>
-            </>
+            </React.Fragment>
           );
         })}
 
