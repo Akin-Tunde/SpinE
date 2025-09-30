@@ -15,6 +15,12 @@ contract Treasury is Ownable, ReentrancyGuard {
     event FundsDeposited(address indexed token, address indexed from, uint256 amount);
     event Withdrawal(address indexed token, address indexed to, uint256 amount);
 
+    // --- THIS IS THE FIX ---
+    // Add a constructor to initialize the Ownable contract
+    constructor() Ownable(msg.sender) {
+        // The constructor can be empty; its purpose is to set the initial owner.
+    }
+
     modifier onlySpinWheel() {
         require(msg.sender == spinWheelAddress, "Caller is not the SpinWheel contract");
         _;

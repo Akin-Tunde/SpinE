@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 // 1. GAME TOKEN CONTRACT (ERC-20)
 // ============================================================================
 
+
 contract GameToken is ERC20, Ownable {
     mapping(address => bool) public minters;
     mapping(address => bool) public burners;
@@ -19,7 +20,8 @@ contract GameToken is ERC20, Ownable {
     event MinterRemoved(address minter);
     event TokensBurned(address from, uint256 amount);
     
-    constructor() ERC20("SpinGame Token", "SPIN") {}
+    // --- THIS IS THE CORRECTED LINE ---
+    constructor() ERC20("SpinGame Token", "SPIN") Ownable(msg.sender) {}
     
     modifier onlyMinter() {
         require(minters[msg.sender], "Not authorized to mint");
