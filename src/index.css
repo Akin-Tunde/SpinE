@@ -108,6 +108,10 @@
 }
 
 @layer base {
+html {
+    @apply text-[14px]; /* Or text-[14px] for a more significant reduction */
+  }
+
   * {
     @apply border-border;
   }

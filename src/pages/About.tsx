@@ -11,7 +11,7 @@ const About = () => {
       <div className="container mx-auto px-4 md:px-6 py-8">
         <div className="text-center mb-8 md:mb-12">
           <HelpCircle className="w-12 h-12 mx-auto text-primary mb-4" />
-          <h1 className="text-3xl md:text-4xl font-bold">How SpinGame Works</h1>
+          <h1 className="text-2xl md:text-3xl font-bold">How SpinGame Works</h1>
           {/* FONT REDUCED HERE */}
           <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
             Win tokens, collect NFTs, and compete for massive prizes.
@@ -27,7 +27,7 @@ const About = () => {
               </CardTitle>
             </CardHeader>
             {/* FONT REDUCED HERE */}
-            <CardContent className="text-sm text-muted-foreground">
+            <CardContent className="text-xs text-muted-foreground">
               <p>
                 Use free daily spins or purchase premium spins to win <span className="font-semibold text-gold">SPIN tokens</span>. Higher tiers offer bigger rewards!
               </p>
