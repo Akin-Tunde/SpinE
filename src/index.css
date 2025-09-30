@@ -113,7 +113,7 @@
 
 @layer base {
 html {
-    @apply text-[15px]; /* Or text-[14px] for a more significant reduction */
+    @apply text-[14px]; /* Or text-[14px] for a more significant reduction */
   }
 
   * {
