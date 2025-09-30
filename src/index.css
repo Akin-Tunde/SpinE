@@ -1,3 +1,7 @@
+/* ADD THIS LINE AT THE TOP */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -109,7 +113,7 @@
 
 @layer base {
 html {
-    @apply text-[14px]; /* Or text-[14px] for a more significant reduction */
+    @apply text-[15px]; /* Or text-[14px] for a more significant reduction */
   }
 
   * {
