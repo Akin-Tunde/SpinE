@@ -1,4 +1,3 @@
-
 // src/lib/appkit.ts
 
 import { QueryClient } from "@tanstack/react-query";
@@ -7,6 +6,10 @@ import { createAppKit } from "@reown/appkit/react";
 
 // Import the chains you use from the AppKit networks path
 import { mainnet, sepolia, base, baseSepolia } from "@reown/appkit/networks";
+
+// --- MODIFICATION: Import connectors to define a custom priority ---
+import { injected, walletConnect } from "wagmi/connectors";
+import { farcasterMiniApp as miniAppConnector } from "@farcaster/miniapp-wagmi-connector";
 
 // 0. Setup queryClient
 export const queryClient = new QueryClient();
@@ -27,12 +30,23 @@ const metadata = {
 };
 
 // 3. Set the networks and use 'as const' to satisfy the type requirement
-export const networks = [mainnet, sepolia, base, baseSepolia] ;
+export const networks = [mainnet, sepolia, base, baseSepolia];
+
+// --- MODIFICATION: Create a prioritized list of connectors ---
+// By placing miniAppConnector() first, we ensure it's the default inside Farcaster.
+const connectors = [
+  miniAppConnector(),
+  injected({ shimDisconnect: true }),
+  walletConnect({ projectId }),
+];
 
 // 4. Create Wagmi Adapter
 export const wagmiAdapter = new WagmiAdapter({
   networks,
   projectId,
+  // Pass the custom connectors list to the adapter
+  // This ensures Farcaster SDK is prioritized
+  connectors,
   ssr: false, // Set to false for Vite/React SPA
 });
 
