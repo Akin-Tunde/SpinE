@@ -8,6 +8,7 @@ import { useAccount } from "wagmi";
 import { ConnectButton } from "@/components/ConnectButton";
 import Footer from "@/components/Footer";
 
+
 const playerStats = {
   totalSpins: 452,
   premiumSpins: 89,
