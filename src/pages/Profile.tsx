@@ -83,9 +83,9 @@ const Profile = () => {
             {isFarcasterConnected ? (
               <>
                 <h1 className="text-xl md:text-2xl font-bold">
-                  {farcasterUser.displayName || farcasterUser.username}
+                  {farcasterUser.displayName}
                 </h1>
-                <p className="text-sm text-muted-foreground -mt-1">My Profile</p>
+                <p className="text-sm text-muted-foreground -mt-1">{farcasterUser.username}</p>
               </>
             ) : (
               <h1 className="text-xl md:text-2xl font-bold">My Profile</h1>
