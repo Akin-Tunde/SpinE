@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { User, Copy, Share2, Trophy, AlertTriangle } from "lucide-react";
-import { useState, useEffect } from "react"; // <-- Import useEffect for logging
+import { useState } from "react";
 import { useAccount } from "wagmi";
 import { ConnectButton } from "@/components/ConnectButton";
 import Footer from "@/components/Footer";
@@ -26,21 +26,9 @@ const Profile = () => {
   const [isCopied, setIsCopied] = useState(false);
   const { user: farcasterUser } = useFarcasterUser();
 
+  // --- FIX: Use the correct connector ID from your debug logs ---
   const isFarcasterConnected =
-    isConnected && connector?.id === "farcasterMiniApp" && farcasterUser;
-
-  // --- DEBUGGING LOGS ---
-  // This will run every time the component re-renders
-  useEffect(() => {
-    console.group("[Debug] Profile Page State");
-    console.log("Wallet Is Connected:", isConnected);
-    console.log("Connector:", connector);
-    console.log("Connector ID:", connector?.id);
-    console.log("Farcaster User Object:", farcasterUser);
-    console.log("FINAL CHECK -> Is Farcaster Connected:", isFarcasterConnected);
-    console.groupEnd();
-  });
-
+    isConnected && connector?.id === "farcaster" && farcasterUser;
 
   const copyReferralCode = () => {
     navigator.clipboard.writeText(playerStats.referralCode);
@@ -50,13 +38,13 @@ const Profile = () => {
 
   if (!isConnected) {
     return (
-      <div className="min-h-screen bg-background flex flex-col pb-20 md-pb-0">
+      <div className="min-h-screen bg-background flex flex-col pb-20 md:pb-0">
         <Navigation />
-        <div className="flex-grow container mx-auto px-4 md-px-6 py-8 flex items-center justify-center">
-          <Card className="max-w-md w-full mx-auto p-6 md-p-8 text-center">
+        <div className="flex-grow container mx-auto px-4 md:px-6 py-8 flex items-center justify-center">
+          <Card className="max-w-md w-full mx-auto p-6 md:p-8 text-center">
             <CardHeader>
               <AlertTriangle className="w-12 h-12 text-warning mx-auto" />
-              <CardTitle className="mt-4 text-xl md-text-2xl">Please Connect Your Wallet</CardTitle>
+              <CardTitle className="mt-4 text-xl md:text-2xl">Please Connect Your Wallet</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground mb-6">You need to connect to view your profile and collection.</p>
@@ -70,10 +58,10 @@ const Profile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-20 md-pb-0">
+    <div className="min-h-screen bg-background pb-20 md:pb-0">
       <Navigation />
 
-      <div className="container mx-auto px-4 md-px-6 py-8">
+      <div className="container mx-auto px-4 md:px-6 py-8">
         <div className="flex flex-row items-center gap-4 mb-8">
           {isFarcasterConnected ? (
             <Avatar className="h-14 w-14">
@@ -94,13 +82,13 @@ const Profile = () => {
           <div className="min-w-0">
             {isFarcasterConnected ? (
               <>
-                <h1 className="text-xl md-text-2xl font-bold">
+                <h1 className="text-xl md:text-2xl font-bold">
                   {farcasterUser.displayName || farcasterUser.username}
                 </h1>
                 <p className="text-sm text-muted-foreground -mt-1">My Profile</p>
               </>
             ) : (
-              <h1 className="text-xl md-text-2xl font-bold">My Profile</h1>
+              <h1 className="text-xl md:text-2xl font-bold">My Profile</h1>
             )}
             <p className="text-muted-foreground font-mono text-sm break-all mt-1">
               {address ? `${address.slice(0, 5)}...${address.slice(-4)}` : "..."}
@@ -109,13 +97,13 @@ const Profile = () => {
         </div>
 
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="grid grid-cols-2 w-full md-w-[400px] mx-auto">
+          <TabsList className="grid grid-cols-2 w-full md:w-[400px] mx-auto">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="collection">NFT Collection</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="mt-6">
-            <div className="grid grid-cols-1 lg-grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2 text-sm">
