@@ -33,13 +33,13 @@ export function ConnectButton() {
         <Avatar className="h-6 w-6">
           <AvatarImage
             src={farcasterUser.pfpUrl}
-            alt={farcasterUser.displayName || farcasterUser.username}
+            alt={farcasterUser.username}
           />
           <AvatarFallback>
             <User className="h-4 w-4" />
           </AvatarFallback>
         </Avatar>
-        <span className="font-medium">{farcasterUser.displayName || farcasterUser.username}</span>
+        <span className="font-medium">{farcasterUser.username}</span>
       </Button>
     );
   }
