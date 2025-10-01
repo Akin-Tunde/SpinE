@@ -1,4 +1,4 @@
-export const gametokenAddress = 0xA7E0Aaf0F8e80280083346Fa18E9bF3fF6019878
+export const gametokenAddress = 0xcf093A7c5d225c2d6a0bC536121Aa94Eca6cA66C
 
 export const gametokenAbi = [
 	{
@@ -587,7 +587,7 @@ export const gametokenAbi = [
 	}
 ] as const
 
-export const TournamentManagerAddress = 0x8679d3c13F1151B4c091E973E9f36888E2863701
+export const TournamentManagerAddress = 0xF6d241c092d9bD199cC2ad9C074b455539AbB8b9
 
 export const TournamentManagerAbi = [
 	{
@@ -1035,7 +1035,7 @@ export const TournamentManagerAbi = [
 	}
 ] as const
 
-export const TreasuryAddress = 0x32Fd3308574F273949242eDF68584b8447EfBa60
+export const TreasuryAddress = 0xbd3504Bc83424d61D5b07BE14b4497128A25764e
 
 export const TreasuryAbi = [
 	{

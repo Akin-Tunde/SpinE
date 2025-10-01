@@ -1,0 +1,67 @@
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Paused @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ScoreUpdated @entity(immutable: true) {
+  id: Bytes!
+  tournamentId: BigInt! # uint256
+  participant: Bytes! # address
+  score: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TournamentCreated @entity(immutable: true) {
+  id: Bytes!
+  internal_id: BigInt! # uint256
+  name: String! # string
+  startTime: BigInt! # uint256
+  endTime: BigInt! # uint256
+  feeType: Int! # uint8
+  feeToken: Bytes! # address
+  feeAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TournamentEnded @entity(immutable: true) {
+  id: Bytes!
+  tournamentId: BigInt! # uint256
+  winners: [Bytes!]! # address[]
+  prizes: [BigInt!]! # uint256[]
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TournamentJoined @entity(immutable: true) {
+  id: Bytes!
+  tournamentId: BigInt! # uint256
+  participant: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Unpaused @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

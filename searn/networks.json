@@ -1,0 +1,8 @@
+{
+  "base": {
+    "TournamentManager": {
+      "address": "0xF6d241c092d9bD199cC2ad9C074b455539AbB8b9",
+      "startBlock": 36259802
+    }
+  }
+}

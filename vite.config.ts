@@ -9,15 +9,15 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  // --- FIX: Add this section to exclude Farcaster libs from optimization ---
   optimizeDeps: {
     exclude: [
       "@farcaster/miniapp-sdk",
       "@farcaster/frame-sdk",
       "@farcaster/miniapp-wagmi-connector",
     ],
+    // --- FIX: Add this line to force Vite to process eventemitter3 correctly ---
+    include: ["eventemitter3"],
   },
-  // --- End of fix ---
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {
