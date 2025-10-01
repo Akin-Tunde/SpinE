@@ -1,3 +1,5 @@
+// src/pages/Profile.tsx
+
 import Navigation from "@/components/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,7 +9,8 @@ import { useState } from "react";
 import { useAccount } from "wagmi";
 import { ConnectButton } from "@/components/ConnectButton";
 import Footer from "@/components/Footer";
-
+import { useFarcasterUser } from "@/hooks/use-farcaster-user"; // <-- 1. Import the hook
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"; // <-- 2. Import Avatar components
 
 const playerStats = {
   totalSpins: 452,
@@ -19,8 +22,13 @@ const playerStats = {
 };
 
 const Profile = () => {
-  const { address, isConnected } = useAccount();
+  const { address, isConnected, connector } = useAccount();
   const [isCopied, setIsCopied] = useState(false);
+  const { user: farcasterUser } = useFarcasterUser(); // <-- 3. Use the hook to get user data
+
+  // 4. Check for a Farcaster-specific connection
+  const isFarcasterConnected =
+    isConnected && connector?.id === "farcasterMiniApp" && farcasterUser;
 
   const copyReferralCode = () => {
     navigator.clipboard.writeText(playerStats.referralCode);
@@ -55,11 +63,28 @@ const Profile = () => {
 
       <div className="container mx-auto px-4 md:px-6 py-8">
         <div className="flex flex-row items-center gap-4 mb-8">
-          <div className="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center flex-shrink-0">
-            <User className="w-7 h-7 text-white" />
-          </div>
+          {/* --- 5. CONDITIONAL AVATAR RENDERING --- */}
+          {isFarcasterConnected ? (
+            <Avatar className="h-14 w-14">
+              <AvatarImage
+                src={farcasterUser.pfpUrl}
+                alt={farcasterUser.displayName || farcasterUser.username}
+              />
+              <AvatarFallback>
+                <User className="h-7 w-7" />
+              </AvatarFallback>
+            </Avatar>
+          ) : (
+            <div className="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center flex-shrink-0">
+              <User className="w-7 h-7 text-white" />
+            </div>
+          )}
+
           <div className="min-w-0">
-            <h1 className="text-xl md:text-2xl font-bold">My Profile</h1>
+            {/* --- 6. CONDITIONAL NAME RENDERING --- */}
+            <h1 className="text-xl md:text-2xl font-bold">
+              {isFarcasterConnected ? farcasterUser.displayName || farcasterUser.username : "My Profile"}
+            </h1>
             <p className="text-muted-foreground font-mono text-sm break-all">
               {address ? `${address.slice(0, 5)}...${address.slice(-4)}` : "..."}
             </p>
