@@ -3,6 +3,9 @@
     "TournamentManager": {
       "address": "0xF6d241c092d9bD199cC2ad9C074b455539AbB8b9",
       "startBlock": 36259802
+    },
+    "Treasury": {
+      "address": "0xbd3504Bc83424d61D5b07BE14b4497128A25764e"
     }
   }
 }

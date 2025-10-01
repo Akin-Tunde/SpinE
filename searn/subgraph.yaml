@@ -42,3 +42,29 @@ dataSources:
         - event: Unpaused(address)
           handler: handleUnpaused
       file: ./src/tournament-manager.ts
+  - kind: ethereum
+    name: Treasury
+    network: base
+    source:
+      address: "0xbd3504Bc83424d61D5b07BE14b4497128A25764e"
+      abi: Treasury
+      startBlock: 36259846
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.9
+      language: wasm/assemblyscript
+      entities:
+        - FundsDeposited
+        - TreasuryOwnershipTransferred
+        - Withdrawal
+      abis:
+        - name: Treasury
+          file: ./abis/Treasury.json
+      eventHandlers:
+        - event: FundsDeposited(indexed address,indexed address,uint256)
+          handler: handleFundsDeposited
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Withdrawal(indexed address,indexed address,uint256)
+          handler: handleWithdrawal
+      file: ./src/treasury.ts
