@@ -9,6 +9,15 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  // --- FIX: Add this section to exclude Farcaster libs from optimization ---
+  optimizeDeps: {
+    exclude: [
+      "@farcaster/miniapp-sdk",
+      "@farcaster/frame-sdk",
+      "@farcaster/miniapp-wagmi-connector",
+    ],
+  },
+  // --- End of fix ---
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {
